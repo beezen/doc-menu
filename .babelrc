@@ -1,0 +1,19 @@
+{
+    "presets": [
+        [
+            "env",
+            {
+                "targets": {
+                    "browsers": ["> 0.1%"]
+                },
+                "loose": true,
+                "debug": false,
+                "include": []
+            }
+        ]
+    ],
+    "plugins": [
+        "transform-object-rest-spread",
+        "transform-object-assign"
+    ]
+}
