@@ -1,20 +1,20 @@
-import "./pageMenu.less"
+import "./doc-menu.less"
 /**
  * 自动生成页面内容索引
  * 只提取 h1,h2,h3 生成一二三级标题索引
- * 使用方式：直接引用 js 和 css;当页面内容加载完成后执行 `PAGE_MENU.init()`。
+ * 使用方式：直接引用 js 和 css;当页面内容加载完成后执行 `DOC_MENU.init()`。
  */
 
-window.PAGE_MENU = window.PAGE_MENU || {};
-PAGE_MENU.title = "目录"; // 标题
-PAGE_MENU.hashPrefix = "hash"; // hash 前缀
-PAGE_MENU._menuList = []; // 菜单列表信息
-PAGE_MENU._menuTreeList = []; // 菜单列表树状信息
+window.DOC_MENU = window.DOC_MENU || {};
+DOC_MENU.title = "目录"; // 标题
+DOC_MENU.hashPrefix = "hash"; // hash 前缀
+DOC_MENU._menuList = []; // 菜单列表信息
+DOC_MENU._menuTreeList = []; // 菜单列表树状信息
 /**
  * @param isRender 是否直接渲染，默认true
  * @return 菜单列表信息
  */
-PAGE_MENU.init = function (isRender = true) {
+DOC_MENU.init = function (isRender = true) {
     const htmlStr = document.documentElement.outerHTML || "";
     const result = htmlStr.match(/<\s*h(1|2|3).*?>.+?<\s*\/h(1|2|3)\s*>/g);
 
@@ -47,7 +47,7 @@ PAGE_MENU.init = function (isRender = true) {
                 break;
             }
         }
-        const hash = `${PAGE_MENU.hashPrefix}_${e.tag}_${index}`;
+        const hash = `${DOC_MENU.hashPrefix}_${e.tag}_${index}`;
         e.hash = hash;
         e.index = index;
         return e;
@@ -66,10 +66,10 @@ PAGE_MENU.init = function (isRender = true) {
         }
         return e;
     })
-    PAGE_MENU._menuList = menuList.concat();
-    menuList = PAGE_MENU.parseToTreeData(menuList) // 解析为树状列表信息
-    PAGE_MENU._menuTreeList = menuList;
-    isRender && PAGE_MENU.render(menuList);
+    DOC_MENU._menuList = menuList.concat();
+    menuList = DOC_MENU.parseToTreeData(menuList) // 解析为树状列表信息
+    DOC_MENU._menuTreeList = menuList;
+    isRender && DOC_MENU.render(menuList);
     return menuList;
 }
 
@@ -78,7 +78,7 @@ PAGE_MENU.init = function (isRender = true) {
  * @param menuList 菜单列表信息
  * @return 树状结构数据
  */
-PAGE_MENU.parseToTreeData = function (menuList) {
+DOC_MENU.parseToTreeData = function (menuList) {
     let arr = [];
     menuList.map(e => {
         if (e.tag == "h1") {
@@ -109,26 +109,26 @@ PAGE_MENU.parseToTreeData = function (menuList) {
  * 菜单模块渲染
  * @param menuList 菜单列表信息
  */
-PAGE_MENU.render = function (menuList) {
+DOC_MENU.render = function (menuList) {
     let renderLevel3 = function (item) {
         return `<li class="d3 item"><a href="#${item.hash}" title="${item.content}">${item.content}</a></li>`
     }
     let renderLevel2 = function (item) {
         return `<li class="d2 item"><a href="#${item.hash}" title="${item.content}">${item.content}</a>
-            ${item.children ? `<ul class="page_menu_leaf_list">${item.children.map(e => renderLevel3(e)).join("")}</ul>` : ''}
+            ${item.children ? `<ul class="doc_menu_leaf_list">${item.children.map(e => renderLevel3(e)).join("")}</ul>` : ''}
             </li>`
     }
     let renderLevel1 = function (item) {
         return `<li class="d1 item"><a href="#${item.hash}" title="${item.content}">${item.content}</a>
-            ${item.children ? `<ul class="page_menu_sub_list">${item.children.map(e => renderLevel2(e)).join("")}</ul>` : ''}
+            ${item.children ? `<ul class="doc_menu_sub_list">${item.children.map(e => renderLevel2(e)).join("")}</ul>` : ''}
             </li>`
     }
-    let listStr = `<ul class="page_menu_list">${menuList.map(e => renderLevel1(e)).join("")}</ul>`
-    let str = `<div class="page_menu_body">
-        <div class="page_menu_title">${PAGE_MENU.title}</div>
+    let listStr = `<ul class="doc_menu_list">${menuList.map(e => renderLevel1(e)).join("")}</ul>`
+    let str = `<div class="doc_menu_body">
+        <div class="doc_menu_title">${DOC_MENU.title}</div>
         ${listStr}</div>`;
     let div = document.createElement("div");
-    div.setAttribute("class", "page_menu_block");
+    div.setAttribute("class", "doc_menu_block");
     div.innerHTML = str;
     document.body.appendChild(div);
 }

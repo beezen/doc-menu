@@ -1,18 +1,22 @@
 {
-  "name": "page-menu",
+  "name": "doc-menu",
   "version": "0.0.1",
   "description": "自动生成页面索引",
-  "main": "./lib/pageMenu.js",
+  "main": "./lib/doc-menu.js",
   "scripts": {
     "build": "digo clean lib && webpack --progress --config ./webpack.config.js --color",
     "css": "digo clean lib && webpack --progress --config ./webpack.css.js --color"
   },
   "author": "beezen",
-  "license": "ISC",
+  "license": "MIT",
+  "repository": {
+    "url": "https://github.com/beezenD/doc-menu"
+  },
+  "homepage": "https://github.com/beezenD/doc-menu",
   "keywords": [
     "anchor",
     "menu",
-    "page-menu"
+    "doc-menu"
   ],
   "files": [
     "lib",

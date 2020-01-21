@@ -7,7 +7,7 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 module.exports = {
     mode: 'production',
     entry: {
-        pageMenu: path.join(__dirname, "./src/pageMenu.js"),
+        "doc-menu": path.join(__dirname, "./src/doc-menu.js"),
     },
     output: {
         pathinfo: true,
