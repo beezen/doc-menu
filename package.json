@@ -1,8 +1,8 @@
 {
   "name": "page-menu",
-  "version": "1.0.0",
-  "description": "",
-  "main": "lib/pageMenu.js",
+  "version": "0.0.1",
+  "description": "自动生成页面索引",
+  "main": "./lib/pageMenu.js",
   "scripts": {
     "build": "digo clean lib && webpack --progress --config ./webpack.config.js --color",
     "css": "digo clean lib && webpack --progress --config ./webpack.css.js --color"

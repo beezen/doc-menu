@@ -6,12 +6,17 @@
 
 在页面最顶端引入`css`和`js`,注意：等页面内容加载完成后，执行`PAGE_MENU.init()`初始化后，立即就会在页面右侧出现索引列表。
 
+资源引用两种方式：1.直接引用在线cdn地址。2.将编译后的源码目录 `lib`, 拷贝到项目中。具体如下：
+
 ```html
 <html>
 <head>
 
-<link rel="stylesheet" href="./lib/pageMenu.css">
-<script src="./lib/pageMenu.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/page-menu@0.0.1/lib/pageMenu.css">
+<script src="https://unpkg.com/page-menu@0.0.1/lib/pageMenu.js"></script>
+
+<!-- <link rel="stylesheet" href="./lib/pageMenu.css">
+<script src="./lib/pageMenu.js"></script> -->
 
 </head>
 
